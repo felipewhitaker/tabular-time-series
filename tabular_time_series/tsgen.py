@@ -53,7 +53,10 @@ class TimeSeriesGenerator(Iterator):
         
         super().__init__()
         
-        assert (len(data) - n - s) // p >= 1, "There should be at least one `p` length array to be returned"
+        # assert (len(data) - n - s) // p >= 1, "There should be at least one `p` length array to be returned"
+        assert n >= 1, "`n` was set to zero: shouldn't some `y` be predicted?"
+        assert p >= 0 or s >= 0, "Neither `p` nor `s` were set: which data will be used to predict `y`?"
+        assert len(data) - n - p - n * s >= 0, "Impossible to generate even one instance"
         
         self.S = -1
         if s > 0:
@@ -67,7 +70,7 @@ class TimeSeriesGenerator(Iterator):
         
         self.s = 0
         
-        self.curr = s + n if s > 0 else 0 # s - p if s > p else 0
+        self.curr = s - p if s > 0 else 0 # s - p if s > p else 0
         return
     
     def __len__(self):
