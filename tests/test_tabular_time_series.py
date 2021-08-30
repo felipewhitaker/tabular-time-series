@@ -1,7 +1,9 @@
+from tabular_time_series.tsdf import get_df
 import pytest 
 
 from tabular_time_series import __version__
 from tabular_time_series.tsgen import TimeSeriesGenerator
+from tabular_time_series.tsdf import get_df
 
 
 def test_version():
@@ -105,3 +107,15 @@ class TestTimeSeriesGenerator:
     def test_parameters_mix(self, data, order, ylen, sorder, expected):
         tabular = TimeSeriesGenerator(data, order, ylen, sorder)
         assert list(tabular) == expected
+
+class TestGetDF:
+
+    @pytest.mark.parametrize(
+        'data, order, yorder, sorder, expected',
+        [
+            (DATA, 1, 1, 2, {'y(ts2)_1': {0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7}, 'y(t-0)': {0: 1, 1: 2, 2: 3, 3: 4, 4: 5, 5: 6, 6: 7, 7: 8}, 'y(t+1)': {0: 2, 1: 3, 2: 4, 3: 5, 4: 6, 5: 7, 6: 8, 7: 9}})
+        ]
+    )
+    def test_function(self, data, order, yorder, sorder, expected):
+        df = get_df(data, order, yorder, sorder)
+        assert df.to_dict() == expected
