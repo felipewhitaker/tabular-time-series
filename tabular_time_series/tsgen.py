@@ -19,24 +19,24 @@ class TimeSeriesGenerator(Iterator):
         >> for X, y in ts:
         ...    print(X.shape, y.shape)
         ...    print(X, y)
-        #     (2,) (2,)
-        #     [0. 1.] [2 3]
-        #     (2,) (2,)
-        #     [1. 2.] [3 4]
-        #     (2,) (2,)
-        #     [2. 3.] [4 5]
-        #     (2,) (2,)
-        #     [3. 4.] [5 6]
+            (2,) (2,)
+            [0. 1.] [2 3]
+            (2,) (2,)
+            [1. 2.] [3 4]
+            (2,) (2,)
+            [2. 3.] [4 5]
+            (2,) (2,)
+            [3. 4.] [5 6]
         >> p, n, s = 2, 2, 4
         >> ts = TimeSeries(data, p, n, s)
         >> for X, y in ts:
         ...    diff = np.where(data == y[0])[0].item() - np.where(data == X[0])[0].item()
         ...    print(X.shape, y.shape, diff) == (n + p,) (n,) s
         ...    print(X, y)
-        #     (4,) (2,)
-        #     [0 1 2 3] [4 5]
-        #     (4,) (2,)
-        #     [1 2 3 4] [5 6]
+            (4,) (2,)
+            [0 1 2 3] [4 5]
+            (4,) (2,)
+            [1 2 3 4] [5 6]
         
         Parameters:
         ----------
