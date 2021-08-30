@@ -12,14 +12,12 @@ DATA = list(range(10))
 class TestTimeSeriesGenerator:
 
     def test_invalid_ar(self):
-        with pytest.raises(ValueError):
+        with pytest.raises(AssertionError):
             tabular = TimeSeriesGenerator(DATA, len(DATA), 1, -1)
-            assert len(tabular) == 0 # raises ValueError
 
     def test_invalid_ylen(self):
-        with pytest.raises(ValueError):
+        with pytest.raises(AssertionError):
             tabular = TimeSeriesGenerator(DATA, 1, len(DATA), -1)
-            assert len(tabular) == 0 # raises ValueError 
 
     def test_invalid_seasonal(self):
         with pytest.raises(AssertionError):
@@ -27,7 +25,7 @@ class TestTimeSeriesGenerator:
 
     def test_invalid_combination(self):
         with pytest.raises(AssertionError):
-            p, n = len(DATA) - 2, 1, 
+            p, n = len(DATA), 1
             tabular = TimeSeriesGenerator(DATA, p, n, -1)
 
     @pytest.mark.parametrize(

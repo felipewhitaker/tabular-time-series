@@ -56,7 +56,7 @@ class TimeSeriesGenerator(Iterator):
         # assert (len(data) - n - s) // p >= 1, "There should be at least one `p` length array to be returned"
         assert n >= 1, "`n` was set to zero: shouldn't some `y` be predicted?"
         assert p >= 0 or s >= 0, "Neither `p` nor `s` were set: which data will be used to predict `y`?"
-        assert len(data) - n - p - n * s >= 0, "Impossible to generate even one instance"
+        assert len(data) - n - p - n * (s if s > 0 else 0) >= 0, "Impossible to generate even one instance"
         
         self.S = -1
         if s > 0:
