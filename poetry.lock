@@ -41,7 +41,7 @@ name = "numpy"
 version = "1.21.2"
 description = "NumPy is the fundamental package for array computing with Python."
 category = "main"
-optional = true
+optional = false
 python-versions = ">=3.7,<3.11"
 
 [[package]]
@@ -60,7 +60,7 @@ name = "pandas"
 version = "1.3.2"
 description = "Powerful data structures for data analysis, time series, and statistics"
 category = "main"
-optional = true
+optional = false
 python-versions = ">=3.7.1"
 
 [package.dependencies]
@@ -125,7 +125,7 @@ name = "python-dateutil"
 version = "2.8.2"
 description = "Extensions to the standard Python datetime module"
 category = "main"
-optional = true
+optional = false
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
 
 [package.dependencies]
@@ -136,7 +136,7 @@ name = "pytz"
 version = "2021.1"
 description = "World timezone definitions, modern and historical"
 category = "main"
-optional = true
+optional = false
 python-versions = "*"
 
 [[package]]
@@ -144,7 +144,7 @@ name = "six"
 version = "1.16.0"
 description = "Python 2 and 3 compatibility utilities"
 category = "main"
-optional = true
+optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 
 [[package]]
@@ -158,7 +158,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8,<3.11"
-content-hash = "86fe81fc85d69e2a35f066d735e6a6dfff51826641bf53c0898dfa87d011d851"
+content-hash = "0d1959192e8a3c689694e43feef68c1bd697df8a50cf0dffc4e40a4eb28fb386"
 
 [metadata.files]
 atomicwrites = [
