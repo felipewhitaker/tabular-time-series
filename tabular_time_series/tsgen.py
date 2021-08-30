@@ -77,14 +77,14 @@ class TimeSeriesGenerator(Iterator):
         if self.curr > len(self):
             raise IndexError
             
-        ys = np.array([]) # seasonal
+        ys = []
         if self.S > -1:
             ys = self.data[self.s: self.s + self.n]
             self.s += 1
         
         ar = self.data[i: i + self.p] # autoregressive
         yt = self.data[i + self.p: i + self.p + self.n] # y for prediction
-        return np.append(ys, ar), yt
+        return ys + ar, yt
     
     def __next__(self):
         try:
