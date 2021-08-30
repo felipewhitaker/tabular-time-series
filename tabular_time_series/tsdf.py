@@ -1,11 +1,13 @@
-from . import TimeSeriesGenerator
+from tsgen import TimeSeriesGenerator
 import pandas as pd # type: ignore
 
 def get_df(data, p, n, s): #, category_seasonal, test_split = .33):
-    """[summary]
+    """Interface for `TimeSeriesGenerator`, transforming the generator into a `pd.DataFrame`
 
     Returns:
-        [type]: [description]
+        p int: autoregressive parameter
+        n int: lenght of `y`
+        s int: seasonal parameter
     """
     
     # Define ts
