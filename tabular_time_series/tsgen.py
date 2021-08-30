@@ -1,5 +1,4 @@
 from collections.abc import Iterator
-import numpy as np
 
 class TimeSeriesGenerator(Iterator):
     
