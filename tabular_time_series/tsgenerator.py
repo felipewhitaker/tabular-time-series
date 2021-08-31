@@ -16,30 +16,24 @@ class TimeSeriesGenerator(Iterator):
 
         Thus
 
-        >> data = np.array([0, 1, 2, 3, 4, 5, 6])
+        >> data = [0, 1, 2, 3, 4, 5, 6]
         >> p, n = 2, 2
-        >> ts = TimeSeries(data, p, n)
+        >> ts = TimeSeriesGenerator(data, p, n)
         >> for X, y in ts:
         ...    print(X.shape, y.shape)
         ...    print(X, y)
-            (2,) (2,)
-            [0. 1.] [2 3]
-            (2,) (2,)
-            [1. 2.] [3 4]
-            (2,) (2,)
-            [2. 3.] [4 5]
-            (2,) (2,)
-            [3. 4.] [5 6]
+            [0, 1] [2, 3]
+            [1, 2] [3, 4]
+            [2, 3] [4, 5]
+            [3, 4] [5, 6]
         >> p, n, s = 2, 2, 4
-        >> ts = TimeSeries(data, p, n, s)
+        >> ts = TimeSeriesGenerator(data, p, n, s)
         >> for X, y in ts:
         ...    diff = np.where(data == y[0])[0].item() - np.where(data == X[0])[0].item()
         ...    print(X.shape, y.shape, diff) == (n + p,) (n,) s
         ...    print(X, y)
-            (4,) (2,)
-            [0 1 2 3] [4 5]
-            (4,) (2,)
-            [1 2 3 4] [5 6]
+            [0, 1, 2, 3] [4, 5]
+            [1, 2, 3, 4] [5, 6]
 
         Parameters:
         ----------
@@ -55,7 +49,6 @@ class TimeSeriesGenerator(Iterator):
 
         super().__init__()
 
-        # assert (len(data) - n - s) // p >= 1, "There should be at least one `p` length array to be returned"
         assert n >= 1, "`n` was set to zero: shouldn't some `y` be predicted?"
         assert (
             p >= 0 or s >= 0
@@ -76,7 +69,7 @@ class TimeSeriesGenerator(Iterator):
 
         self.s = 0
 
-        self.curr = s - p if s > 0 else 0  # s - p if s > p else 0
+        self.curr = s - p if s > 0 else 0
         return
 
     def __len__(self):
