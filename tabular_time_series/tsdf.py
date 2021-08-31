@@ -1,9 +1,9 @@
-from .tsgen import TimeSeriesGenerator
+from .tsgenerator import TimeSeriesGenerator
 import pandas as pd # type: ignore
 from typing import Union
 import numpy as np
 
-def get_df(data: Union[np.array], p: int, n: int, s: int = -1) -> pd.DataFrame: #, category_seasonal, test_split = .33):
+def timeseries2df(data: Union[np.array], p: int, n: int, s: int = -1) -> pd.DataFrame: #, category_seasonal, test_split = .33):
     """Interface for `TimeSeriesGenerator`, transforming the generator into a `pd.DataFrame`
 
     Returns:
