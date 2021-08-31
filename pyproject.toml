@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tabular-time-series"
-version = "0.2.31"
+version = "0.2.32"
 description = ""
 authors = ["Felipe Whitaker <felipewhitaker@gmail.com>"]
 readme = "README.md"
