@@ -37,6 +37,14 @@ Therefore, it makes it possible to train a neural network (e.g.) that 2 autoregr
 
 Considering that many times a batch array is needed for training, `get_df` can be used to generate a `pandas` DataFrame that will contain columns in the format:
 
-- `y(t - 0)`, ..., `y(t - p)` autogressive entries
-- `y(t + 0)`, ..., `y(t + n)` predict entries
-- `y(ts{s}_0})`, ..., `y(ts{s}_n})` seasonal entries
+- `y(t - 0), ..., y(t - p)` autogressive entries
+- `y(t + 0), ..., y(t + n)` predict entries
+- `y(ts{s}_0}), ..., y(ts{s}_n})` seasonal entries
+
+### Installation
+
+To install the latest version, just run
+
+```bash
+pip install tabular-time-series
+```
