@@ -54,7 +54,7 @@ class TimeSeriesGenerator(Iterator):
             p >= 0 or s >= 0
         ), "Neither `p` nor `s` were set: which data will be used to predict `y`?"
         assert (
-            len(data) - n - p - n * (s if s > 0 else 0) >= 0
+            len(data) - n - p - (n if s > 0 else 0) >= 0
         ), "Impossible to generate even one instance"
 
         self.S = -1
