@@ -56,6 +56,9 @@ class TimeSeriesGenerator(Iterator):
         assert (
             len(data) - n - p - (n if s > 0 else 0) >= 0
         ), "Impossible to generate even one instance"
+        assert (
+            len(data) - s > 0
+        ), f"Given data of len {len(data)} can not generate seasonal of {s}"
 
         self.S = -1
         if s > 0:
