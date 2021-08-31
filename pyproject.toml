@@ -1,9 +1,11 @@
 [tool.poetry]
 name = "tabular-time-series"
-version = "0.1.0"
+version = "0.1.1"
 description = ""
 authors = ["Felipe Whitaker <felipewhitaker@gmail.com>"]
 readme = "README.md"
+license = "MIT"
+repository = "https://github.com/felipewhitaker/tabular-time-series"
 
 [tool.poetry.dependencies]
 python = ">=3.8,<3.11"
