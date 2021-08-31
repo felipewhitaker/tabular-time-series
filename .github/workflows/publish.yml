@@ -23,13 +23,12 @@ jobs:
       - name: run tests
         run: make ci-test
 
-  publish:
+  build-publish:
     runs-on: ubuntu-latest
-
+    
     steps:
-      - name: Publish a Python distribution to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
+      - uses: actions/checkout@v2
+      - name: Build and publish to pypi
+        uses: JRubics/poetry-publish@v1.8
         with:
-          user: __token__
-          password: ${{ secrets.PYPI_API_TOKEN }}
-          packages_dir: dist/
+          pypi_token: ${{ secrets.PYPI_TOKEN }}
