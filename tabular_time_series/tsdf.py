@@ -1,4 +1,4 @@
-from tsgen import TimeSeriesGenerator
+from .tsgen import TimeSeriesGenerator
 import pandas as pd # type: ignore
 
 def get_df(data, p, n, s): #, category_seasonal, test_split = .33):
