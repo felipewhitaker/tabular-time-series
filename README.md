@@ -43,7 +43,7 @@ Considering that many times a batch array is needed for training, `get_df` can b
 
 ### Installation
 
-To install the latest version, just run
+To install the latest version, simply run:
 
 ```bash
 pip install tabular-time-series
