@@ -1,9 +1,8 @@
-from tabular_time_series.tsdf import get_df
 import pytest 
 
 from tabular_time_series import __version__
-from tabular_time_series.tsgen import TimeSeriesGenerator
-from tabular_time_series.tsdf import get_df
+from tabular_time_series.tsgenerator import TimeSeriesGenerator
+from tabular_time_series.tsdf import timeseries2df
 
 
 def test_version():
@@ -117,5 +116,5 @@ class TestGetDF:
         ]
     )
     def test_function(self, data, order, yorder, sorder, expected):
-        df = get_df(data, order, yorder, sorder)
+        df = timeseries2df(data, order, yorder, sorder)
         assert df.to_dict() == expected
