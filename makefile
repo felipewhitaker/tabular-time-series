@@ -15,6 +15,9 @@ test-coverage:
 format: 
 	poetry run black tabular_time_series/ tests/
 
+publish:
+	poetry publish --build -u PYPI_USERNAME -p PYPI_PASSWORD
+
 ci-setup:
 	pip install poetry
 	poetry install

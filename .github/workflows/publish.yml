@@ -22,3 +22,13 @@ jobs:
 
       - name: run tests
         run: make ci-test
+
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Publish using poetry
+        env:
+          PYPI_USERNAME: ${{ secrets.PYPI_USERNAME }}
+          PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+        run: make publish
