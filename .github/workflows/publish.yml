@@ -27,6 +27,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Install Dependencies
+        run: make ci-setup
+
       - name: Publish using poetry
         env:
           PYPI_USERNAME: ${{ secrets.PYPI_USERNAME }}
