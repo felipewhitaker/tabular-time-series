@@ -17,7 +17,6 @@ Therefore, it makes it possible to train a neural network (e.g.) that 2 autoregr
 >> p, n = 2, 2
 >> ts = TimeSeriesGenerator(data, p, n)
 >> for X, y in ts:
-...    print(X.shape, y.shape)
 ...    print(X, y)
     [0, 1] [2, 3]
     [1, 2] [3, 4]
@@ -26,17 +25,27 @@ Therefore, it makes it possible to train a neural network (e.g.) that 2 autoregr
 >> p, n, s = 2, 2, 4
 >> ts = TimeSeriesGenerator(data, p, n, s)
 >> for X, y in ts:
-...    diff = np.where(data == y[0])[0].item() - np.where(data == X[0])[0].item()
-...    print(X.shape, y.shape, diff) == (n + p,) (n,) s
+...    # both y have their respective seasonal entry
+...    print(data.index(y[0]) - data.index(X[0]) == s, data.index(y[1]) - data.index(X[1]) == s)
 ...    print(X, y)
     [0, 1, 2, 3] [4, 5]
     [1, 2, 3, 4] [5, 6]
 ```
 
-### get_df
+### timeseries2df
 
-Considering that many times a batch array is needed for training, `get_df` can be used to generate a `pandas` DataFrame that will contain columns in the format:
+Considering that many times a batch array is needed for training, `timeseries2df` can be used to generate a `pandas` DataFrame that will contain columns in the format:
 
-- `y(t - 0)`, ..., `y(t - p)` autogressive entries
-- `y(t + 0)`, ..., `y(t + n)` predict entries
-- `y(ts{s}_0})`, ..., `y(ts{s}_n})` seasonal entries
+```python
+>>> from tabular_time_series.tsdf import timeseries2df
+>>> data = list(range(10))
+>>> p, n, s = 2, 2, 4
+>>> df = timeseries2df(data, p, n, s)
+>>> df
+   y(ts4)_1  y(ts4)_2  y(t-1)  y(t-0)  y(t+1)  y(t+2)
+0         0         1       2       3       4       5
+1         1         2       3       4       5       6
+2         2         3       4       5       6       7
+3         3         4       5       6       7       8
+4         4         5       6       7       8       9
+```
