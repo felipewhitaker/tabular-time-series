@@ -1,8 +1,14 @@
 from collections.abc import Iterator
+import numpy as np
+from typing import Union, List, Tuple
 
 class TimeSeriesGenerator(Iterator):
     
-    def __init__(self, data, p, n, s = -1):
+    def __init__(self, data: Union[list, np.array], p: int, n: int, s: int = -1) -> \
+        Tuple[
+            Union[List[int], List[np.int64], List[float], List[np.float64]], 
+            Union[List[int], List[np.int64], List[float], List[np.float64]]
+        ]:
         """
         Iterator that receives `time series data` (rows, cols) and can 
         be iterated over, returning `X` like ([s + n] + p,) and `y` like
