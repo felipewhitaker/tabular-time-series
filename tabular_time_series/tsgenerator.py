@@ -106,33 +106,3 @@ class TimeSeriesGenerator(Iterator):
             raise StopIteration()
         self.curr += 1
         return s, ar, y
-
-
-if __name__ == "__main__":
-
-    import numpy as np
-    from numpy import array, int64
-
-    test_data_list = list(range(10))
-    test_data_numpy = np.arange(10)
-
-    order, yorder, sorder = 1, 1, 0
-    res = list(TimeSeriesGenerator(test_data_numpy, order, yorder, sorder))
-    expected = np.array((array([], dtype=int64), array([0]), array([1])))
-    print(np.array(res[0]) == expected)
-
-    # for test_data, name_data in [
-    #     (test_data_list, "test_data_list"),
-    #     (test_data_numpy, "test_data_numpy"),
-    # ]:
-    #     for order, yorder, sorder in [
-    #         # (len(test_data) - 1, 1, 0),
-    #         # (1, len(test_data) - 1, 0),
-    #         # (1, len(test_data) - 1, 0),
-    #         # (0, 1, len(test_data) - 1),
-    #         (1, 1, 0),
-    #     ]:
-
-    #         res = list(TimeSeriesGenerator(test_data, order, yorder, sorder))
-
-    #         print(f"({name_data}, {order}, {yorder}, {sorder}, {res}),")
