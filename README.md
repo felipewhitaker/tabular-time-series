@@ -16,7 +16,7 @@ Therefore, it makes it possible to train a neural network (e.g.) that 2 autoregr
 >> data = [0, 1, 2, 3, 4, 5, 6]
 >> p, n = 2, 2
 >> ts = TimeSeriesGenerator(data, p, n)
->> for X, y in ts:
+>> for _, X, y in ts:
 ...    print(X, y)
     [0, 1] [2, 3]
     [1, 2] [3, 4]
@@ -28,8 +28,8 @@ Therefore, it makes it possible to train a neural network (e.g.) that 2 autoregr
 ...    # both y have their respective seasonal entry
 ...    print(data.index(y[0]) - data.index(X[0]) == s, data.index(y[1]) - data.index(X[1]) == s)
 ...    print(X, y)
-    [0, 1, 2, 3] [4, 5]
-    [1, 2, 3, 4] [5, 6]
+    [0, 1], [2, 3] [4, 5]
+    [1, 2], [3, 4] [5, 6]
 ```
 
 ### timeseries2df
