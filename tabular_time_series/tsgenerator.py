@@ -12,27 +12,6 @@ class TimeSeriesGenerator(Iterator):
         >> np.where(y == y[0])[0].item() - np.where(X == X[0])[0].item()  == s
         >> np.where(y == y[0])[0].item() - np.where(X == X[-1])[0].item() == 1
 
-        Thus
-
-        >> data = [0, 1, 2, 3, 4, 5, 6]
-        >> p, n = 2, 2
-        >> ts = TimeSeriesGenerator(data, p, n)
-        >> for X, y in ts:
-        ...    print(X.shape, y.shape)
-        ...    print(X, y)
-            [0, 1] [2, 3]
-            [1, 2] [3, 4]
-            [2, 3] [4, 5]
-            [3, 4] [5, 6]
-        >> p, n, s = 2, 2, 4
-        >> ts = TimeSeriesGenerator(data, p, n, s)
-        >> for X, y in ts:
-        ...    diff = np.where(data == y[0])[0].item() - np.where(data == X[0])[0].item()
-        ...    print(X.shape, y.shape, diff) == (n + p,) (n,) s
-        ...    print(X, y)
-            [0, 1, 2, 3] [4, 5]
-            [1, 2, 3, 4] [5, 6]
-
         Parameters:
         ----------
         data : np.array of shape (n,)
@@ -56,17 +35,6 @@ class TimeSeriesGenerator(Iterator):
         assert (
             len(data) >= n + p
         ), f"Impossible to generate sequence from given parameters p = {p}, n = {n}, s = {s} for sequence of lenght len(data) = {len(data)}"
-
-        # assert n >= 1, "`n` was set to zero: shouldn't some `y` be predicted?"
-        # assert (
-        #     p >= 0 or s >= 0
-        # ), "Neither `p` nor `s` were set: which data will be used to predict `y`?"
-        # assert (
-        #     len(data) - n - p - (n if s > 0 else 0) >= 0
-        # ), "Impossible to generate even one instance"
-        # assert (
-        #     len(data) - s > 0
-        # ), f"Given data of len {len(data)} can not generate seasonal of {s}"
 
         self.S = -1
         if s > 0:
