@@ -1,4 +1,4 @@
-from .tsgenerator import TimeSeriesGenerator
+from tsgenerator import TimeSeriesGenerator
 import pandas as pd  # type: ignore
 from typing import Union
 import numpy as np
