@@ -1,4 +1,4 @@
-from tsgenerator import TimeSeriesGenerator
+from .tsgenerator import TimeSeriesGenerator
 
 
 class TimeSeriesGeneratorOnline:
