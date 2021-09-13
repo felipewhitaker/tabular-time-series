@@ -3,6 +3,7 @@ import pytest
 from tabular_time_series import __version__
 from tabular_time_series.tsgenerator import TimeSeriesGenerator
 from tabular_time_series.tsdf import timeseries2df
+from tabular_time_series.tsgeneratoronline import TimeSeriesGeneratorOnline
 
 
 def test_version():
@@ -12,7 +13,7 @@ def test_version():
 test_data_list = list(range(10))
 
 
-class TestTimeSeriesGenerator:
+class Test_TimeSeriesGenerator:
     @pytest.mark.parametrize(
         "data, order, yorder, sorder",
         [
@@ -83,7 +84,7 @@ class TestTimeSeriesGenerator:
         assert list(tabular) == expected
 
 
-class TestGetDF:
+class Test_timeseries2df:
     @pytest.mark.parametrize(
         "data, order, yorder, sorder, expected",
         [
@@ -103,3 +104,35 @@ class TestGetDF:
     def test_function(self, data, order, yorder, sorder, expected):
         df = timeseries2df(data, order, yorder, sorder)
         assert df.to_dict() == expected
+
+
+class Test_TimeSeriesGeneratorOnline:
+    @pytest.mark.parametrize(
+        "data, order, yorder, sorder, expected",
+        [
+            (
+                test_data_list,
+                1,
+                1,
+                2,
+                [
+                    [False, None, None, None],
+                    [False, None, None, None],
+                    [False, None, None, None],
+                    [True, [1], [2], [3]],
+                    [True, [2], [3], [4]],
+                    [True, [3], [4], [5]],
+                    [True, [4], [5], [6]],
+                    [True, [5], [6], [7]],
+                    [True, [6], [7], [8]],
+                    [True, [7], [8], [9]],
+                ],
+            ),
+        ],
+    )
+    def test_function(self, data, order, yorder, sorder, expected):
+        tsgo = TimeSeriesGeneratorOnline(order, yorder, sorder)
+
+        for i, X in enumerate(data):
+            b, (s, ar, y) = tsgo(X)
+            assert [b, s, ar, y] == expected[i]
