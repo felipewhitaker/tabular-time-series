@@ -32,6 +32,31 @@ Therefore, it makes it possible to train a neural network (e.g.) that 2 autoregr
     [1, 2], [3, 4] [5, 6]
 ```
 
+### TimeSeriesGeneratorOnline
+
+To support online learning (and streaming) applications, `TimeSeriesGeneratorOnline` enables applications to give real time measurements and returns a bool `b` stating if it was possible to generate features, considering the given seasonal `s`, autoregressive `ar` and output `y`.
+
+```python
+>>> from tsgeneratoronline import TimeSeriesGeneratorOnline
+>>> data = [i for i in range(10)]
+>>> p, n, s = 1, 1, 3
+>>> tsgo = TimeSeriesGeneratorOnline(p, n, s)
+>>> for X in data:
+...     b, (s, ar, y) = tsgo(X)
+...     print(X, '|', b, s, ar, y)
+... 
+0 | False None None None
+1 | False None None None
+2 | False None None None
+3 | False None None None
+4 | True [1] [3] [4]
+5 | True [2] [4] [5]
+6 | True [3] [5] [6]
+7 | True [4] [6] [7]
+8 | True [5] [7] [8]
+9 | True [6] [8] [9]
+```
+
 ### timeseries2df
 
 Considering that many times a batch array is needed for training, `timeseries2df` can be used to generate a `pandas` DataFrame that will contain columns in the format:
