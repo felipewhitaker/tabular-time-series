@@ -18,20 +18,21 @@ class TimeSeriesGeneratorOnline:
         return len(self._data)
 
     def _check_len(self, p: int, n: int, s: int):
-        if len(self) >= self._min_len(p, n, s):
+        if len(self) > self._min_len(p, n, s):
             return True
         return False
 
     def __call__(self, new_data: object):
+        self._data.append(new_data)
+
         if not self._check_len(self.p, self.n, self.s):
-            if len(self) == 0:
-                self._data = [new_data]
-            else:
-                self._data.append(new_data)
+            b, (s, ar, y) = False, (None, None, None)
 
-            return False, (None, None, None)
+        else:
+            b, (s, ar, y) = (
+                True,
+                TimeSeriesGenerator(self._data, self.p, self.n, self.s).__next__(),
+            )
+            self._data = self._data[1:]
 
-        self._data[: len(self) - 1] = self._data[1:]
-        self._data[-1] = new_data
-
-        return True, TimeSeriesGenerator(self._data, self.p, self.n, self.s).__next__()
+        return b, (s, ar, y)
