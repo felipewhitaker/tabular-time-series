@@ -37,24 +37,24 @@ Therefore, it makes it possible to train a neural network (e.g.) that 2 autoregr
 To support online learning (and streaming) applications, `TimeSeriesGeneratorOnline` enables applications to give real time measurements and returns a bool `b` stating if it was possible to generate features, considering the given seasonal `s`, autoregressive `ar` and output `y`.
 
 ```python
->>> from tsgeneratoronline import TimeSeriesGeneratorOnline
+>>> from tabular_time_series.tsgeneratoronline import TimeSeriesGeneratorOnline
 >>> data = [i for i in range(10)]
->>> p, n, s = 1, 1, 3
+>>> p, n, s = 2, 2, 4
 >>> tsgo = TimeSeriesGeneratorOnline(p, n, s)
 >>> for X in data:
 ...     b, (s, ar, y) = tsgo(X)
 ...     print(X, '|', b, s, ar, y)
-... 
+...
 0 | False None None None
 1 | False None None None
 2 | False None None None
 3 | False None None None
-4 | True [1] [3] [4]
-5 | True [2] [4] [5]
-6 | True [3] [5] [6]
-7 | True [4] [6] [7]
-8 | True [5] [7] [8]
-9 | True [6] [8] [9]
+4 | False None None None
+5 | False None None None
+6 | True [0, 1] [2, 3] [4, 5]
+7 | True [1, 2] [3, 4] [5, 6]
+8 | True [2, 3] [4, 5] [6, 7]
+9 | True [3, 4] [5, 6] [7, 8]
 ```
 
 ### timeseries2df
