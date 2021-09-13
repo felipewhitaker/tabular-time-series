@@ -1,4 +1,4 @@
-from .tsgenerator import TimeSeriesGenerator
+from tsgenerator import TimeSeriesGenerator
 
 
 class TimeSeriesGeneratorOnline:
@@ -35,18 +35,3 @@ class TimeSeriesGeneratorOnline:
         self._data[-1] = new_data
 
         return True, TimeSeriesGenerator(self._data, self.p, self.n, self.s).__next__()
-
-
-if __name__ == "__main__":
-
-    from random import randint
-
-    data = [_ for _ in range(10)]
-
-    tsgo = TimeSeriesGeneratorOnline(1, 1, 2)
-
-    print("[")
-    for X in data:
-        b, (s, ar, y) = tsgo(X)
-        print(f"\t[{b}, {s}, {ar}, {y}]", end=",\n")
-    print("]")
